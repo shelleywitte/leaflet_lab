@@ -1,12 +1,11 @@
 var map = L.map('map').setView([51.505, -0.09], 13);
 
 //add tile layer...replace project id and accessToken with your own
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery   <a href="http://mapbox.com">Mapbox</a>',
+L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
     maxZoom: 18,
-    id: 'ohthatswitte.p4bg5d3l',
-    accessToken: 'pk.eyJ1Ijoib2h0aGF0c3dpdHRlIiwiYSI6ImNpa2RkeThlNTAwMWp0cmx5dGE3aWw0YWcifQ.elzCgiaRk1Ao6RA2T6wy4g'
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+
 
 var marker = L.marker([51.5, -0.09]).addTo(map);
 
@@ -41,3 +40,4 @@ function onMapClick(e) {
 }
 
 map.on('click', onMapClick);
+
