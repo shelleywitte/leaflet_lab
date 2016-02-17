@@ -64,21 +64,11 @@ var geojsonFeature = {
     "name": "Coors Field",
     "amenity": "Baseball Stadium",
     "popupContent": "This is where the Rockies play!"
-    "show_on_map": true
   },
   "geometry": {
     "type": "Point",
     "coordinates": [-104.99404, 39.75621]
-  }, {
-    "type": "Feature",
-    "properties": {
-        "name": "Busch Field",
-        "show_on_map": false
-    },
-    "geometry": {
-        "type": "Point",
-        "coordinates": [-104.98404, 39.74621]
-    }
+  }
 };
 
 L.geoJson(geojsonFeature).addTo(map);
@@ -163,6 +153,28 @@ function onEachFeature(feature, layer) {
 L.geoJson(geojsonFeature, {
     onEachFeature: onEachFeature
 }).addTo(map);
+
+var someFeatures = [{
+    "type": "Feature",
+    "properties": {
+        "name": "Coors Field",
+        "show_on_map": true
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-104.99404, 39.75621]
+    }
+}, {
+    "type": "Feature",
+    "properties": {
+        "name": "Busch Field",
+        "show_on_map": false
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-104.98404, 39.74621]
+    }
+}];
 
 L.geoJson(someFeatures, {
     filter: function(feature, layer) {
