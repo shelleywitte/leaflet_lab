@@ -56,8 +56,9 @@ function onMapClick(e) { //"e" argument in function is the map click event objec
 map.on('click', onMapClick);//turns the event listener on
 
 
+//GEOJSON Tutorial
 
-
+//creates object with multiple properties
 var geojsonFeature = {
   "type": "Feature",
   "properties": {
@@ -70,9 +71,10 @@ var geojsonFeature = {
     "coordinates": [-104.99404, 39.75621]
   }
 };
-
+//adds geojson feature to the map
 L.geoJson(geojsonFeature).addTo(map);
 
+//geojson object as an array of geojson objects
 var myLines = [{
     "type": "LineString",
     "coordinates": [[-100, 40], [-105, 45], [-110, 55]]
@@ -81,16 +83,18 @@ var myLines = [{
     "coordinates": [[-105, 40], [-110, 45], [-115, 55]]
 }];
 
+//styling features as an object - styles the myLines array objects the same way
 var myStyle = {
     "color": "#ff7800",
     "weight": 5,
     "opacity": 0.65
 };
-
+//adds the style properties to the map
 L.geoJson(myLines, {
     style: myStyle
 }).addTo(map);
 
+//adds array of objects
 var states = [{
     "type": "Feature",
     "properties": {"party": "Republican"},
@@ -119,6 +123,7 @@ var states = [{
     }
 }];
 
+//styling the above array based on the "party" property
 L.geoJson(states, {
     style: function(feature) {
         switch (feature.properties.party) {
@@ -126,8 +131,9 @@ L.geoJson(states, {
             case 'Democrat':   return {color: "#0000ff"};
         }
     }
-}).addTo(map);
+}).addTo(map);  //adds array and its style properties to the map
 
+//creates circle marker with specific style properties
 var geojsonMarkerOptions = {
     radius: 8,
     fillColor: "#ff7800",
@@ -137,23 +143,27 @@ var geojsonMarkerOptions = {
     fillOpacity: 0.8
 };
 
+//creates a layer for geojson point data which will be shown on the map as the
+//circle markers as defined above
 L.geoJson(geojsonFeature, {
     pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, geojsonMarkerOptions);
     }
-}).addTo(map);
+}).addTo(map);//adds geojson data as circle markers to the map
 
+//Function that gets called on each feature in a geojson before adding it to the
+//map - in this case it's to attach a popup feature when clicked by the user
 function onEachFeature(feature, layer) {
-    // does this feature have a property named popupContent?
     if (feature.properties && feature.properties.popupContent) {
         layer.bindPopup(feature.properties.popupContent);
     }
 }
-
+//adds geojson feature with the onEachFeature function to the map
 L.geoJson(geojsonFeature, {
     onEachFeature: onEachFeature
 }).addTo(map);
 
+//creates an array of geojson data with a property containing TRUE or FALSE
 var someFeatures = [{
     "type": "Feature",
     "properties": {
@@ -175,7 +185,8 @@ var someFeatures = [{
         "coordinates": [-104.98404, 39.74621]
     }
 }];
-
+//creates filter option that will look at the value for the "show_on_map" property
+//and if it's TRUE, it will be shown on the map (FALSE = not shown on map)
 L.geoJson(someFeatures, {
     filter: function(feature, layer) {
         return feature.properties.show_on_map;
