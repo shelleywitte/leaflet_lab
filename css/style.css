@@ -1,3 +1,7 @@
 /* Stylesheet by Shelley Witte, 2016 */
 
 #map { height: 300px; }
+
+.leaflet-popup-content p {
+    margin: 0.2em 0;
+}
