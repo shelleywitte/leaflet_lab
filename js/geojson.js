@@ -64,11 +64,8 @@ function createPropSymbols(data, map){
     }).addTo(map);
 };
 
-
-
 //function to retrieve the data and place it on the map
 function getData(map){
-    //load the data
     $.ajax("data/MegaCities.geojson", {
         dataType: "json",
         success: function(response){
