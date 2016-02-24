@@ -1,6 +1,17 @@
 /* Stylesheet by Shelley Witte, 2016 */
 
-#map { height: 1200px; }
+#map {
+    height: 800px;
+    width: 80%;
+    display: inline-block;
+}
+
+#panel {
+    width: 16%;
+    padding: 20px;
+    display: inline-block;
+    vertical-align: top;
+}
 
 .leaflet-popup-content p {
     margin: 0.2em 0;

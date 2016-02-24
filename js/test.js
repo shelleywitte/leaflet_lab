@@ -42,21 +42,21 @@ function pointToLayer(feature, latlng) {
 
     var layer = L.circleMarker(latlng, geojsonMarkerOptions);
 
-    var popupContent = "<p><b>Zip Code: </b> " + feature.properties.ZipCode + "</p>";
+    var panelContent = "<p><b>Zip Code: </b> " + feature.properties.ZipCode + "</p>";
 
     var fiscalYear = attribute.substr(3).replace("_", "/");
-    popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + feature.properties[attribute] + " hundred cubic feet</p>";
+    panelContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + feature.properties[attribute] + " hundred cubic feet</p>";
 
-    layer.bindPopup(popupContent, {
-        offset: new L.Point(0, -geojsonMarkerOptions.radius)
-    });
-    //event listeners to open popup on hover
+
     layer.on({
         mouseover: function(){
-            this.openPopup();
+            $("#panel").html(panelContent);
         },
         mouseout: function(){
-            this.closePopup();
+            $("#panel").html(panelContent);
+        },
+        click: function(){
+            $("#panel").html(panelContent);
         }
     });
 
