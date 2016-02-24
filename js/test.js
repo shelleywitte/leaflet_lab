@@ -24,8 +24,7 @@ function calcPropRadius(attValue) {
     return radius;
 };
 
-function createPropSymbols(response, map) {
-
+function pointToLayer(feature, latlng) {
     var attribute = "FY_11_12"
 
     var geojsonMarkerOptions = {
@@ -37,15 +36,36 @@ function createPropSymbols(response, map) {
         fillOpacity: 0.5
     };
 
+    var attValue = Number(feature.properties[attribute]);
 
-    L.geoJson(response, {
-        pointToLayer: function (feature, latlng) {
-            var attValue = Number(feature.properties[attribute]);
+    geojsonMarkerOptions.radius = calcPropRadius(attValue);
 
-            geojsonMarkerOptions.radius = calcPropRadius(attValue);
+    var layer = L.circleMarker(latlng, geojsonMarkerOptions);
 
-            return L.circleMarker(latlng, geojsonMarkerOptions);
+    var popupContent = "<p><b>Zip Code: </b> " + feature.properties.ZipCode + "</p>";
+
+    var fiscalYear = attribute.substr(3).replace("_", "/");
+    popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + feature.properties[attribute] + " hundred cubic feet</p>";
+
+    layer.bindPopup(popupContent, {
+        offset: new L.Point(0, -geojsonMarkerOptions.radius)
+    });
+    //event listeners to open popup on hover
+    layer.on({
+        mouseover: function(){
+            this.openPopup();
+        },
+        mouseout: function(){
+            this.closePopup();
         }
+    });
+
+    return layer;
+};
+
+function createPropSymbols(response, map) {
+    L.geoJson(response, {
+        pointToLayer: pointToLayer
     }).addTo(map);
 };
 

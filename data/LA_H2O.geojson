@@ -12,7 +12,7 @@
         "FY_10_11": 14,
         "FY_11_12": 15,
         "FY_12_13": 10,
-        "Zip Code": 90001
+        "ZipCode": 90001
       },
       "geometry": {
         "type": "Point",
@@ -33,7 +33,7 @@
         "FY_10_11": 16,
         "FY_11_12": 17,
         "FY_12_13": 11,
-        "Zip Code": 90002
+        "ZipCode": 90002
       },
       "geometry": {
         "type": "Point",
@@ -54,7 +54,7 @@
         "FY_10_11": 17,
         "FY_11_12": 17,
         "FY_12_13": 10,
-        "Zip Code": 90003
+        "ZipCode": 90003
       },
       "geometry": {
         "type": "Point",
@@ -75,7 +75,7 @@
         "FY_10_11": 34,
         "FY_11_12": 34,
         "FY_12_13": 18,
-        "Zip Code": 90004
+        "ZipCode": 90004
       },
       "geometry": {
         "type": "Point",
@@ -96,7 +96,7 @@
         "FY_10_11": 63,
         "FY_11_12": 63,
         "FY_12_13": 25,
-        "Zip Code": 90005
+        "ZipCode": 90005
       },
       "geometry": {
         "type": "Point",
@@ -117,7 +117,7 @@
         "FY_10_11": 41,
         "FY_11_12": 41,
         "FY_12_13": 11,
-        "Zip Code": 90006
+        "ZipCode": 90006
       },
       "geometry": {
         "type": "Point",
@@ -138,7 +138,7 @@
         "FY_10_11": 50,
         "FY_11_12": 41,
         "FY_12_13": 12,
-        "Zip Code": 90007
+        "ZipCode": 90007
       },
       "geometry": {
         "type": "Point",
@@ -159,7 +159,7 @@
         "FY_10_11": 19,
         "FY_11_12": 20,
         "FY_12_13": 10,
-        "Zip Code": 90008
+        "ZipCode": 90008
       },
       "geometry": {
         "type": "Point",
@@ -180,7 +180,7 @@
         "FY_10_11": 120,
         "FY_11_12": 119,
         "FY_12_13": 9,
-        "Zip Code": 90010
+        "ZipCode": 90010
       },
       "geometry": {
         "type": "Point",
@@ -201,7 +201,7 @@
         "FY_10_11": 20,
         "FY_11_12": 21,
         "FY_12_13": 11,
-        "Zip Code": 90011
+        "ZipCode": 90011
       },
       "geometry": {
         "type": "Point",
@@ -222,7 +222,7 @@
         "FY_10_11": 102,
         "FY_11_12": 101,
         "FY_12_13": 8,
-        "Zip Code": 90012
+        "ZipCode": 90012
       },
       "geometry": {
         "type": "Point",
@@ -243,7 +243,7 @@
         "FY_10_11": 55,
         "FY_11_12": 57,
         "FY_12_13": 5,
-        "Zip Code": 90013
+        "ZipCode": 90013
       },
       "geometry": {
         "type": "Point",
@@ -264,7 +264,7 @@
         "FY_10_11": 48,
         "FY_11_12": 48,
         "FY_12_13": 10,
-        "Zip Code": 90015
+        "ZipCode": 90015
       },
       "geometry": {
         "type": "Point",
@@ -285,7 +285,7 @@
         "FY_10_11": 18,
         "FY_11_12": 18,
         "FY_12_13": 10,
-        "Zip Code": 90016
+        "ZipCode": 90016
       },
       "geometry": {
         "type": "Point",
@@ -306,7 +306,7 @@
         "FY_10_11": 157,
         "FY_11_12": 154,
         "FY_12_13": 11,
-        "Zip Code": 90017
+        "ZipCode": 90017
       },
       "geometry": {
         "type": "Point",
@@ -327,7 +327,7 @@
         "FY_10_11": 19,
         "FY_11_12": 19,
         "FY_12_13": 10,
-        "Zip Code": 90018
+        "ZipCode": 90018
       },
       "geometry": {
         "type": "Point",
@@ -348,7 +348,7 @@
         "FY_10_11": 21,
         "FY_11_12": 22,
         "FY_12_13": 12,
-        "Zip Code": 90019
+        "ZipCode": 90019
       },
       "geometry": {
         "type": "Point",
@@ -369,7 +369,7 @@
         "FY_10_11": 82,
         "FY_11_12": 82,
         "FY_12_13": 37,
-        "Zip Code": 90020
+        "ZipCode": 90020
       },
       "geometry": {
         "type": "Point",
@@ -390,7 +390,7 @@
         "FY_10_11": 45,
         "FY_11_12": 46,
         "FY_12_13": 21,
-        "Zip Code": 90021
+        "ZipCode": 90021
       },
       "geometry": {
         "type": "Point",
@@ -411,7 +411,7 @@
         "FY_10_11": 27,
         "FY_11_12": 28,
         "FY_12_13": 10,
-        "Zip Code": 90023
+        "ZipCode": 90023
       },
       "geometry": {
         "type": "Point",
@@ -432,7 +432,7 @@
         "FY_10_11": 67,
         "FY_11_12": 68,
         "FY_12_13": 28,
-        "Zip Code": 90024
+        "ZipCode": 90024
       },
       "geometry": {
         "type": "Point",
@@ -453,7 +453,7 @@
         "FY_10_11": 33,
         "FY_11_12": 33,
         "FY_12_13": 11,
-        "Zip Code": 90025
+        "ZipCode": 90025
       },
       "geometry": {
         "type": "Point",
@@ -474,7 +474,7 @@
         "FY_10_11": 20,
         "FY_11_12": 19,
         "FY_12_13": 9,
-        "Zip Code": 90026
+        "ZipCode": 90026
       },
       "geometry": {
         "type": "Point",
@@ -495,7 +495,7 @@
         "FY_10_11": 40,
         "FY_11_12": 41,
         "FY_12_13": 17,
-        "Zip Code": 90027
+        "ZipCode": 90027
       },
       "geometry": {
         "type": "Point",
@@ -516,7 +516,7 @@
         "FY_10_11": 54,
         "FY_11_12": 55,
         "FY_12_13": 10,
-        "Zip Code": 90028
+        "ZipCode": 90028
       },
       "geometry": {
         "type": "Point",
@@ -537,7 +537,7 @@
         "FY_10_11": 35,
         "FY_11_12": 35,
         "FY_12_13": 10,
-        "Zip Code": 90029
+        "ZipCode": 90029
       },
       "geometry": {
         "type": "Point",
@@ -558,7 +558,7 @@
         "FY_10_11": 23,
         "FY_11_12": 23,
         "FY_12_13": 9,
-        "Zip Code": 90031
+        "ZipCode": 90031
       },
       "geometry": {
         "type": "Point",
@@ -579,7 +579,7 @@
         "FY_10_11": 16,
         "FY_11_12": 16,
         "FY_12_13": 10,
-        "Zip Code": 90032
+        "ZipCode": 90032
       },
       "geometry": {
         "type": "Point",
@@ -600,7 +600,7 @@
         "FY_10_11": 32,
         "FY_11_12": 32,
         "FY_12_13": 10,
-        "Zip Code": 90033
+        "ZipCode": 90033
       },
       "geometry": {
         "type": "Point",
@@ -621,7 +621,7 @@
         "FY_10_11": 26,
         "FY_11_12": 26,
         "FY_12_13": 12,
-        "Zip Code": 90034
+        "ZipCode": 90034
       },
       "geometry": {
         "type": "Point",
@@ -642,7 +642,7 @@
         "FY_10_11": 22,
         "FY_11_12": 22,
         "FY_12_13": 14,
-        "Zip Code": 90035
+        "ZipCode": 90035
       },
       "geometry": {
         "type": "Point",
@@ -663,7 +663,7 @@
         "FY_10_11": 33,
         "FY_11_12": 34,
         "FY_12_13": 16,
-        "Zip Code": 90036
+        "ZipCode": 90036
       },
       "geometry": {
         "type": "Point",
@@ -684,7 +684,7 @@
         "FY_10_11": 25,
         "FY_11_12": 25,
         "FY_12_13": 11,
-        "Zip Code": 90037
+        "ZipCode": 90037
       },
       "geometry": {
         "type": "Point",
@@ -705,7 +705,7 @@
         "FY_10_11": 34,
         "FY_11_12": 34,
         "FY_12_13": 10,
-        "Zip Code": 90038
+        "ZipCode": 90038
       },
       "geometry": {
         "type": "Point",
@@ -726,7 +726,7 @@
         "FY_10_11": 16,
         "FY_11_12": 17,
         "FY_12_13": 10,
-        "Zip Code": 90039
+        "ZipCode": 90039
       },
       "geometry": {
         "type": "Point",
@@ -747,7 +747,7 @@
         "FY_10_11": 15,
         "FY_11_12": 15,
         "FY_12_13": 11,
-        "Zip Code": 90041
+        "ZipCode": 90041
       },
       "geometry": {
         "type": "Point",
@@ -768,7 +768,7 @@
         "FY_10_11": 17,
         "FY_11_12": 17,
         "FY_12_13": 9,
-        "Zip Code": 90042
+        "ZipCode": 90042
       },
       "geometry": {
         "type": "Point",
@@ -789,7 +789,7 @@
         "FY_10_11": 13,
         "FY_11_12": 13,
         "FY_12_13": 9,
-        "Zip Code": 90043
+        "ZipCode": 90043
       },
       "geometry": {
         "type": "Point",
@@ -810,7 +810,7 @@
         "FY_10_11": 16,
         "FY_11_12": 16,
         "FY_12_13": 10,
-        "Zip Code": 90044
+        "ZipCode": 90044
       },
       "geometry": {
         "type": "Point",
@@ -831,7 +831,7 @@
         "FY_10_11": 29,
         "FY_11_12": 29,
         "FY_12_13": 12,
-        "Zip Code": 90045
+        "ZipCode": 90045
       },
       "geometry": {
         "type": "Point",
@@ -852,7 +852,7 @@
         "FY_10_11": 27,
         "FY_11_12": 27,
         "FY_12_13": 19,
-        "Zip Code": 90046
+        "ZipCode": 90046
       },
       "geometry": {
         "type": "Point",
@@ -873,7 +873,7 @@
         "FY_10_11": 11,
         "FY_11_12": 11,
         "FY_12_13": 9,
-        "Zip Code": 90047
+        "ZipCode": 90047
       },
       "geometry": {
         "type": "Point",
@@ -894,7 +894,7 @@
         "FY_10_11": 28,
         "FY_11_12": 29,
         "FY_12_13": 14,
-        "Zip Code": 90048
+        "ZipCode": 90048
       },
       "geometry": {
         "type": "Point",
@@ -915,7 +915,7 @@
         "FY_10_11": 35,
         "FY_11_12": 36,
         "FY_12_13": 30,
-        "Zip Code": 90049
+        "ZipCode": 90049
       },
       "geometry": {
         "type": "Point",
@@ -936,7 +936,7 @@
         "FY_10_11": 16,
         "FY_11_12": 17,
         "FY_12_13": 12,
-        "Zip Code": 90056
+        "ZipCode": 90056
       },
       "geometry": {
         "type": "Point",
@@ -957,7 +957,7 @@
         "FY_10_11": 90,
         "FY_11_12": 91,
         "FY_12_13": 9,
-        "Zip Code": 90057
+        "ZipCode": 90057
       },
       "geometry": {
         "type": "Point",
@@ -978,7 +978,7 @@
         "FY_10_11": 27,
         "FY_11_12": 26,
         "FY_12_13": 10,
-        "Zip Code": 90058
+        "ZipCode": 90058
       },
       "geometry": {
         "type": "Point",
@@ -999,7 +999,7 @@
         "FY_10_11": 17,
         "FY_11_12": 17,
         "FY_12_13": 11,
-        "Zip Code": 90059
+        "ZipCode": 90059
       },
       "geometry": {
         "type": "Point",
@@ -1020,7 +1020,7 @@
         "FY_10_11": 25,
         "FY_11_12": 25,
         "FY_12_13": 11,
-        "Zip Code": 90061
+        "ZipCode": 90061
       },
       "geometry": {
         "type": "Point",
@@ -1041,7 +1041,7 @@
         "FY_10_11": 14,
         "FY_11_12": 14,
         "FY_12_13": 10,
-        "Zip Code": 90062
+        "ZipCode": 90062
       },
       "geometry": {
         "type": "Point",
@@ -1062,7 +1062,7 @@
         "FY_10_11": 15,
         "FY_11_12": 16,
         "FY_12_13": 9,
-        "Zip Code": 90063
+        "ZipCode": 90063
       },
       "geometry": {
         "type": "Point",
@@ -1083,7 +1083,7 @@
         "FY_10_11": 21,
         "FY_11_12": 22,
         "FY_12_13": 14,
-        "Zip Code": 90064
+        "ZipCode": 90064
       },
       "geometry": {
         "type": "Point",
@@ -1104,7 +1104,7 @@
         "FY_10_11": 14,
         "FY_11_12": 14,
         "FY_12_13": 9,
-        "Zip Code": 90065
+        "ZipCode": 90065
       },
       "geometry": {
         "type": "Point",
@@ -1125,7 +1125,7 @@
         "FY_10_11": 16,
         "FY_11_12": 17,
         "FY_12_13": 11,
-        "Zip Code": 90066
+        "ZipCode": 90066
       },
       "geometry": {
         "type": "Point",
@@ -1146,7 +1146,7 @@
         "FY_10_11": 25,
         "FY_11_12": 26,
         "FY_12_13": 17,
-        "Zip Code": 90068
+        "ZipCode": 90068
       },
       "geometry": {
         "type": "Point",
@@ -1167,7 +1167,7 @@
         "FY_10_11": 35,
         "FY_11_12": 36,
         "FY_12_13": 25,
-        "Zip Code": 90069
+        "ZipCode": 90069
       },
       "geometry": {
         "type": "Point",
@@ -1188,7 +1188,7 @@
         "FY_10_11": 39,
         "FY_11_12": 39,
         "FY_12_13": 36,
-        "Zip Code": 90077
+        "ZipCode": 90077
       },
       "geometry": {
         "type": "Point",
@@ -1209,7 +1209,7 @@
         "FY_10_11": 90,
         "FY_11_12": 88,
         "FY_12_13": 9,
-        "Zip Code": 90094
+        "ZipCode": 90094
       },
       "geometry": {
         "type": "Point",
@@ -1230,7 +1230,7 @@
         "FY_10_11": 40,
         "FY_11_12": 43,
         "FY_12_13": 45,
-        "Zip Code": 90210
+        "ZipCode": 90210
       },
       "geometry": {
         "type": "Point",
@@ -1251,7 +1251,7 @@
         "FY_10_11": 26,
         "FY_11_12": 42,
         "FY_12_13": 70,
-        "Zip Code": 90212
+        "ZipCode": 90212
       },
       "geometry": {
         "type": "Point",
@@ -1272,7 +1272,7 @@
         "FY_10_11": 16,
         "FY_11_12": 16,
         "FY_12_13": 9,
-        "Zip Code": 90230
+        "ZipCode": 90230
       },
       "geometry": {
         "type": "Point",
@@ -1293,7 +1293,7 @@
         "FY_10_11": 31,
         "FY_11_12": 31,
         "FY_12_13": 6,
-        "Zip Code": 90232
+        "ZipCode": 90232
       },
       "geometry": {
         "type": "Point",
@@ -1314,7 +1314,7 @@
         "FY_10_11": 20,
         "FY_11_12": 20,
         "FY_12_13": 11,
-        "Zip Code": 90247
+        "ZipCode": 90247
       },
       "geometry": {
         "type": "Point",
@@ -1335,7 +1335,7 @@
         "FY_10_11": 21,
         "FY_11_12": 23,
         "FY_12_13": 10,
-        "Zip Code": 90248
+        "ZipCode": 90248
       },
       "geometry": {
         "type": "Point",
@@ -1356,7 +1356,7 @@
         "FY_10_11": 26,
         "FY_11_12": 27,
         "FY_12_13": 24,
-        "Zip Code": 90272
+        "ZipCode": 90272
       },
       "geometry": {
         "type": "Point",
@@ -1377,7 +1377,7 @@
         "FY_10_11": 9,
         "FY_11_12": 9,
         "FY_12_13": 9,
-        "Zip Code": 90275
+        "ZipCode": 90275
       },
       "geometry": {
         "type": "Point",
@@ -1398,7 +1398,7 @@
         "FY_10_11": 14,
         "FY_11_12": 14,
         "FY_12_13": 9,
-        "Zip Code": 90291
+        "ZipCode": 90291
       },
       "geometry": {
         "type": "Point",
@@ -1419,7 +1419,7 @@
         "FY_10_11": 32,
         "FY_11_12": 33,
         "FY_12_13": 9,
-        "Zip Code": 90292
+        "ZipCode": 90292
       },
       "geometry": {
         "type": "Point",
@@ -1440,7 +1440,7 @@
         "FY_10_11": 35,
         "FY_11_12": 37,
         "FY_12_13": 13,
-        "Zip Code": 90293
+        "ZipCode": 90293
       },
       "geometry": {
         "type": "Point",
@@ -1461,7 +1461,7 @@
         "FY_10_11": 11,
         "FY_11_12": 12,
         "FY_12_13": 12,
-        "Zip Code": 90305
+        "ZipCode": 90305
       },
       "geometry": {
         "type": "Point",
@@ -1482,7 +1482,7 @@
         "FY_10_11": 19,
         "FY_11_12": 20,
         "FY_12_13": 20,
-        "Zip Code": 90402
+        "ZipCode": 90402
       },
       "geometry": {
         "type": "Point",
@@ -1503,7 +1503,7 @@
         "FY_10_11": 6,
         "FY_11_12": 7,
         "FY_12_13": 7,
-        "Zip Code": 90405
+        "ZipCode": 90405
       },
       "geometry": {
         "type": "Point",
@@ -1524,7 +1524,7 @@
         "FY_10_11": 23,
         "FY_11_12": 23,
         "FY_12_13": 11,
-        "Zip Code": 90501
+        "ZipCode": 90501
       },
       "geometry": {
         "type": "Point",
@@ -1545,7 +1545,7 @@
         "FY_10_11": 23,
         "FY_11_12": 24,
         "FY_12_13": 11,
-        "Zip Code": 90710
+        "ZipCode": 90710
       },
       "geometry": {
         "type": "Point",
@@ -1566,7 +1566,7 @@
         "FY_10_11": 18,
         "FY_11_12": 17,
         "FY_12_13": 12,
-        "Zip Code": 90717
+        "ZipCode": 90717
       },
       "geometry": {
         "type": "Point",
@@ -1587,7 +1587,7 @@
         "FY_10_11": 22,
         "FY_11_12": 23,
         "FY_12_13": 10,
-        "Zip Code": 90731
+        "ZipCode": 90731
       },
       "geometry": {
         "type": "Point",
@@ -1608,7 +1608,7 @@
         "FY_10_11": 21,
         "FY_11_12": 22,
         "FY_12_13": 12,
-        "Zip Code": 90732
+        "ZipCode": 90732
       },
       "geometry": {
         "type": "Point",
@@ -1629,7 +1629,7 @@
         "FY_10_11": 74,
         "FY_11_12": 66,
         "FY_12_13": 11,
-        "Zip Code": 90744
+        "ZipCode": 90744
       },
       "geometry": {
         "type": "Point",
@@ -1650,7 +1650,7 @@
         "FY_10_11": 19,
         "FY_11_12": 20,
         "FY_12_13": 16,
-        "Zip Code": 91040
+        "ZipCode": 91040
       },
       "geometry": {
         "type": "Point",
@@ -1671,7 +1671,7 @@
         "FY_10_11": 15,
         "FY_11_12": 16,
         "FY_12_13": 12,
-        "Zip Code": 91042
+        "ZipCode": 91042
       },
       "geometry": {
         "type": "Point",
@@ -1692,7 +1692,7 @@
         "FY_10_11": 16,
         "FY_11_12": 18,
         "FY_12_13": 18,
-        "Zip Code": 91214
+        "ZipCode": 91214
       },
       "geometry": {
         "type": "Point",
@@ -1713,7 +1713,7 @@
         "FY_10_11": 52,
         "FY_11_12": 44,
         "FY_12_13": 36,
-        "Zip Code": 91302
+        "ZipCode": 91302
       },
       "geometry": {
         "type": "Point",
@@ -1734,7 +1734,7 @@
         "FY_10_11": 31,
         "FY_11_12": 32,
         "FY_12_13": 14,
-        "Zip Code": 91303
+        "ZipCode": 91303
       },
       "geometry": {
         "type": "Point",
@@ -1755,7 +1755,7 @@
         "FY_10_11": 28,
         "FY_11_12": 29,
         "FY_12_13": 20,
-        "Zip Code": 91304
+        "ZipCode": 91304
       },
       "geometry": {
         "type": "Point",
@@ -1776,7 +1776,7 @@
         "FY_10_11": 19,
         "FY_11_12": 20,
         "FY_12_13": 15,
-        "Zip Code": 91306
+        "ZipCode": 91306
       },
       "geometry": {
         "type": "Point",
@@ -1797,7 +1797,7 @@
         "FY_10_11": 18,
         "FY_11_12": 20,
         "FY_12_13": 18,
-        "Zip Code": 91307
+        "ZipCode": 91307
       },
       "geometry": {
         "type": "Point",
@@ -1818,7 +1818,7 @@
         "FY_10_11": 13,
         "FY_11_12": 13,
         "FY_12_13": 12,
-        "Zip Code": 91309
+        "ZipCode": 91309
       },
       "geometry": {
         "type": "Point",
@@ -1839,7 +1839,7 @@
         "FY_10_11": 30,
         "FY_11_12": 32,
         "FY_12_13": 23,
-        "Zip Code": 91311
+        "ZipCode": 91311
       },
       "geometry": {
         "type": "Point",
@@ -1860,7 +1860,7 @@
         "FY_10_11": 41,
         "FY_11_12": 44,
         "FY_12_13": 26,
-        "Zip Code": 91316
+        "ZipCode": 91316
       },
       "geometry": {
         "type": "Point",
@@ -1881,7 +1881,7 @@
         "FY_10_11": 30,
         "FY_11_12": 31,
         "FY_12_13": 22,
-        "Zip Code": 91324
+        "ZipCode": 91324
       },
       "geometry": {
         "type": "Point",
@@ -1902,7 +1902,7 @@
         "FY_10_11": 34,
         "FY_11_12": 36,
         "FY_12_13": 24,
-        "Zip Code": 91325
+        "ZipCode": 91325
       },
       "geometry": {
         "type": "Point",
@@ -1923,7 +1923,7 @@
         "FY_10_11": 25,
         "FY_11_12": 27,
         "FY_12_13": 21,
-        "Zip Code": 91326
+        "ZipCode": 91326
       },
       "geometry": {
         "type": "Point",
@@ -1944,7 +1944,7 @@
         "FY_10_11": 21,
         "FY_11_12": 22,
         "FY_12_13": 15,
-        "Zip Code": 91331
+        "ZipCode": 91331
       },
       "geometry": {
         "type": "Point",
@@ -1965,7 +1965,7 @@
         "FY_10_11": 20,
         "FY_11_12": 21,
         "FY_12_13": 14,
-        "Zip Code": 91335
+        "ZipCode": 91335
       },
       "geometry": {
         "type": "Point",
@@ -1986,7 +1986,7 @@
         "FY_10_11": 19,
         "FY_11_12": 19,
         "FY_12_13": 14,
-        "Zip Code": 91340
+        "ZipCode": 91340
       },
       "geometry": {
         "type": "Point",
@@ -2007,7 +2007,7 @@
         "FY_10_11": 26,
         "FY_11_12": 36,
         "FY_12_13": 16,
-        "Zip Code": 91342
+        "ZipCode": 91342
       },
       "geometry": {
         "type": "Point",
@@ -2028,7 +2028,7 @@
         "FY_10_11": 26,
         "FY_11_12": 27,
         "FY_12_13": 17,
-        "Zip Code": 91343
+        "ZipCode": 91343
       },
       "geometry": {
         "type": "Point",
@@ -2049,7 +2049,7 @@
         "FY_10_11": 21,
         "FY_11_12": 23,
         "FY_12_13": 20,
-        "Zip Code": 91344
+        "ZipCode": 91344
       },
       "geometry": {
         "type": "Point",
@@ -2070,7 +2070,7 @@
         "FY_10_11": 20,
         "FY_11_12": 23,
         "FY_12_13": 15,
-        "Zip Code": 91345
+        "ZipCode": 91345
       },
       "geometry": {
         "type": "Point",
@@ -2091,7 +2091,7 @@
         "FY_10_11": 31,
         "FY_11_12": 35,
         "FY_12_13": 15,
-        "Zip Code": 91352
+        "ZipCode": 91352
       },
       "geometry": {
         "type": "Point",
@@ -2112,7 +2112,7 @@
         "FY_10_11": 40,
         "FY_11_12": 42,
         "FY_12_13": 33,
-        "Zip Code": 91356
+        "ZipCode": 91356
       },
       "geometry": {
         "type": "Point",
@@ -2133,7 +2133,7 @@
         "FY_10_11": 25,
         "FY_11_12": 26,
         "FY_12_13": 22,
-        "Zip Code": 91364
+        "ZipCode": 91364
       },
       "geometry": {
         "type": "Point",
@@ -2154,7 +2154,7 @@
         "FY_10_11": 32,
         "FY_11_12": 35,
         "FY_12_13": 24,
-        "Zip Code": 91367
+        "ZipCode": 91367
       },
       "geometry": {
         "type": "Point",
@@ -2175,7 +2175,7 @@
         "FY_10_11": 24,
         "FY_11_12": 25,
         "FY_12_13": 16,
-        "Zip Code": 91401
+        "ZipCode": 91401
       },
       "geometry": {
         "type": "Point",
@@ -2196,7 +2196,7 @@
         "FY_10_11": 33,
         "FY_11_12": 33,
         "FY_12_13": 14,
-        "Zip Code": 91402
+        "ZipCode": 91402
       },
       "geometry": {
         "type": "Point",
@@ -2217,7 +2217,7 @@
         "FY_10_11": 26,
         "FY_11_12": 27,
         "FY_12_13": 20,
-        "Zip Code": 91403
+        "ZipCode": 91403
       },
       "geometry": {
         "type": "Point",
@@ -2238,7 +2238,7 @@
         "FY_10_11": 31,
         "FY_11_12": 32,
         "FY_12_13": 14,
-        "Zip Code": 91405
+        "ZipCode": 91405
       },
       "geometry": {
         "type": "Point",
@@ -2259,7 +2259,7 @@
         "FY_10_11": 35,
         "FY_11_12": 35,
         "FY_12_13": 14,
-        "Zip Code": 91406
+        "ZipCode": 91406
       },
       "geometry": {
         "type": "Point",
@@ -2280,7 +2280,7 @@
         "FY_10_11": 26,
         "FY_11_12": 28,
         "FY_12_13": 15,
-        "Zip Code": 91411
+        "ZipCode": 91411
       },
       "geometry": {
         "type": "Point",
@@ -2301,7 +2301,7 @@
         "FY_10_11": 26,
         "FY_11_12": 27,
         "FY_12_13": 20,
-        "Zip Code": 91423
+        "ZipCode": 91423
       },
       "geometry": {
         "type": "Point",
@@ -2322,7 +2322,7 @@
         "FY_10_11": 32,
         "FY_11_12": 34,
         "FY_12_13": 32,
-        "Zip Code": 91436
+        "ZipCode": 91436
       },
       "geometry": {
         "type": "Point",
@@ -2343,7 +2343,7 @@
         "FY_10_11": 33,
         "FY_11_12": 34,
         "FY_12_13": 14,
-        "Zip Code": 91504
+        "ZipCode": 91504
       },
       "geometry": {
         "type": "Point",
@@ -2364,7 +2364,7 @@
         "FY_10_11": 19,
         "FY_11_12": 20,
         "FY_12_13": 13,
-        "Zip Code": 91505
+        "ZipCode": 91505
       },
       "geometry": {
         "type": "Point",
@@ -2385,7 +2385,7 @@
         "FY_10_11": 24,
         "FY_11_12": 24,
         "FY_12_13": 13,
-        "Zip Code": 91601
+        "ZipCode": 91601
       },
       "geometry": {
         "type": "Point",
@@ -2406,7 +2406,7 @@
         "FY_10_11": 31,
         "FY_11_12": 32,
         "FY_12_13": 21,
-        "Zip Code": 91602
+        "ZipCode": 91602
       },
       "geometry": {
         "type": "Point",
@@ -2427,7 +2427,7 @@
         "FY_10_11": 29,
         "FY_11_12": 29,
         "FY_12_13": 21,
-        "Zip Code": 91604
+        "ZipCode": 91604
       },
       "geometry": {
         "type": "Point",
@@ -2448,7 +2448,7 @@
         "FY_10_11": 23,
         "FY_11_12": 24,
         "FY_12_13": 14,
-        "Zip Code": 91605
+        "ZipCode": 91605
       },
       "geometry": {
         "type": "Point",
@@ -2469,7 +2469,7 @@
         "FY_10_11": 23,
         "FY_11_12": 24,
         "FY_12_13": 14,
-        "Zip Code": 91606
+        "ZipCode": 91606
       },
       "geometry": {
         "type": "Point",
@@ -2490,7 +2490,7 @@
         "FY_10_11": 26,
         "FY_11_12": 27,
         "FY_12_13": 18,
-        "Zip Code": 91607
+        "ZipCode": 91607
       },
       "geometry": {
         "type": "Point",
