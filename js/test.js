@@ -42,23 +42,12 @@ function pointToLayer(feature, latlng) {
 
     var layer = L.circleMarker(latlng, geojsonMarkerOptions);
 
-    var panelContent = "<p><b>Zip Code: </b> " + feature.properties.ZipCode + "</p>";
+    var popupContent = "<p><b>Zip Code: </b> " + feature.properties.ZipCode + "</p>";
 
     var fiscalYear = attribute.substr(3).replace("_", "/");
-    panelContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + feature.properties[attribute] + " hundred cubic feet</p>";
+    popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + feature.properties[attribute] + " hundred cubic feet</p>";
 
-
-    layer.on({
-        mouseover: function(){
-            $("#panel").html(panelContent);
-        },
-        mouseout: function(){
-            $("#panel").html(panelContent);
-        },
-        click: function(){
-            $("#panel").html(panelContent);
-        }
-    });
+    layer.bindPopup(popupContent);
 
     return layer;
 };
@@ -69,12 +58,48 @@ function createPropSymbols(response, map) {
     }).addTo(map);
 };
 
+function createSequenceControls(map) {
+    $('#panel').append('<input class = "range-slider" type="range">');
+
+    $('.range-slider').attr({
+        max: 8,
+        min: 0,
+        value: 0,
+        step:1
+    });
+
+    $('#panel').append('<button class="skip" id="reverse">Reverse</button>');
+    $('#panel').append('<button class="skip" id="forward">Skip</button>');
+
+    $('#reverse').html('<img src="img/arrow_left.png">');
+    $('#forward').html('<img src="img/arrow_right.png">');
+};
+
+function processData(data){
+    var attributes = [];
+
+    var properties = data.features[0].properties;
+
+    for (var attribute in properties) {
+        if (attribute.indexOf("FY") > -1) {
+            attributes.push(attribute);
+        };
+    };
+
+    console.log(attributes);
+
+    return attributes;
+};
 
 function getData(map){
     $.ajax("data/LA_H2O.geojson", {
         dataType: "json",
         success: function(response) {
+
+            var attributes = processData(response);
+
             createPropSymbols(response, map);
+            createSequenceControls(map);
         }
     });
 };
