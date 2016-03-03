@@ -24,8 +24,10 @@ function calcPropRadius(attValue) {
     return radius;
 };
 
-function pointToLayer(feature, latlng) {
-    var attribute = "FY_11_12"
+function pointToLayer(feature, latlng, attributes) {
+    var attribute = attributes[0];
+
+    console.log(attribute);
 
     var geojsonMarkerOptions = {
         radius: 8,
@@ -52,9 +54,11 @@ function pointToLayer(feature, latlng) {
     return layer;
 };
 
-function createPropSymbols(response, map) {
+function createPropSymbols(response, map, attributes) {
     L.geoJson(response, {
-        pointToLayer: pointToLayer
+        pointToLayer: function(feature, latlng) {
+            return pointToLayer(feature, latlng, attributes);
+        }
     }).addTo(map);
 };
 
@@ -73,6 +77,28 @@ function createSequenceControls(map) {
 
     $('#reverse').html('<img src="img/arrow_left.png">');
     $('#forward').html('<img src="img/arrow_right.png">');
+
+    $('.skip').click(function(){
+        var index = $('.range-slider').val();
+
+        if ($(this).attr('id') == 'forward'){
+            index++;
+            index = index > 8 ? 0 : index;
+        } else if ($(this).attr('id') == 'reverse') {
+            index--;
+            index = index < 0 ? 8 : index;
+        };
+
+        $('.range-slider').val(index);
+
+        updatePropSymbols(map, attributes[index]);
+    });
+
+    $('.range-slider').on('input', function(){
+        var index = $(this).val();
+
+        updatePropSymbols(map, attributes[index]);
+    });
 };
 
 function processData(data){
@@ -86,8 +112,6 @@ function processData(data){
         };
     };
 
-    console.log(attributes);
-
     return attributes;
 };
 
@@ -98,8 +122,8 @@ function getData(map){
 
             var attributes = processData(response);
 
-            createPropSymbols(response, map);
-            createSequenceControls(map);
+            createPropSymbols(response, map, attributes);
+            createSequenceControls(map, attributes);
         }
     });
 };
