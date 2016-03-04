@@ -2,7 +2,7 @@ function createMap(){
     //create the map
     var map = L.map('map', {
         center: [34.02, -118.375],
-        zoom: 10
+        zoom: 11
     });
 
     //tileset
@@ -12,28 +12,35 @@ function createMap(){
 
     getData(map);
 
-    getZipBoundaries(map);
+
 };
 
-// var layerControl = L.control.layers('topright').addTo(map);
-
 function calcPerCapita(fyAttr, popAttr){
+
     var perCapita = fyAttr / popAttr;
 
     return perCapita;
 };
 
-function style(feature) {
-    return {
-        fillColor: getColor(feature.properties.perCapita)
+function createChoropleth(zipData, map, attributes){
+    var zipStyle = {
+        "fillColor": getColor(feature.properties.perCapita),
     };
-}
 
-function createChoropleth(zipData, map, layerControl) {
-    var layer = L.geoJson(zipData, {style: style}).addTo(map);
+    L.geoJson(zipData, {
+        style: zipStyle
+    }).addTo(map);
+};
 
-    layerControl.addBaseLayer(layer, "Water Usage Per Capita")
-}
+function getColor(p) {
+    return p >  ? '#F1EEF6' :
+           p >  ? '#BDC9E1' :
+           p >  ? '#74A9CF' :
+           p >  ? '#2B8CBE' :
+           p >  ? '#045A8D' :
+};
+
+
 
 function calcPropRadius(attValue) {
     //scale factor to adjust symbol size evenly
@@ -91,6 +98,9 @@ function createPropSymbols(response, map, attributes) {
             return pointToLayer(feature, latlng, attributes);
         }
     }).addTo(map);
+    //function that creates the control
+    getZipBoundaries(map);
+
 };
 
 function updatePropSymbols(map, attribute) {
@@ -185,7 +195,8 @@ function getZipBoundaries(map){
         dataType: "json",
         success: function(zipData) {
 
-            createChoropleth(zipData, map, attributes);
+            L.geoJson(zipData).addTo(map);
+
         }
     });
 };

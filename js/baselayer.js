@@ -2,7 +2,7 @@ function createMap(){
     //create the map
     var map = L.map('map', {
         center: [34.02, -118.375],
-        zoom: 10
+        zoom: 11
     });
 
     //tileset
@@ -10,30 +10,12 @@ function createMap(){
     	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     }).addTo(map);
 
-    getData(map);
+    getData(map, layerControl);
 
-    getZipBoundaries(map);
 };
 
-// var layerControl = L.control.layers('topright').addTo(map);
+var layerControl = L.control.layers().addTo(map);
 
-function calcPerCapita(fyAttr, popAttr){
-    var perCapita = fyAttr / popAttr;
-
-    return perCapita;
-};
-
-function style(feature) {
-    return {
-        fillColor: getColor(feature.properties.perCapita)
-    };
-}
-
-function createChoropleth(zipData, map, layerControl) {
-    var layer = L.geoJson(zipData, {style: style}).addTo(map);
-
-    layerControl.addBaseLayer(layer, "Water Usage Per Capita")
-}
 
 function calcPropRadius(attValue) {
     //scale factor to adjust symbol size evenly
@@ -86,11 +68,13 @@ function pointToLayer(feature, latlng, attributes) {
 };
 
 function createPropSymbols(response, map, attributes) {
-    L.geoJson(response, {
+    var waterLayer = L.geoJson(response, {
         pointToLayer: function(feature, latlng) {
             return pointToLayer(feature, latlng, attributes);
         }
     }).addTo(map);
+
+    getZipBoundaries(map, layerControl);
 };
 
 function updatePropSymbols(map, attribute) {
@@ -167,7 +151,7 @@ function processData(data){
     return attributes;
 };
 
-function getData(map){
+function getData(map, layerControl){
     $.ajax("data/LA_H2O.geojson", {
         dataType: "json",
         success: function(response) {
@@ -180,14 +164,17 @@ function getData(map){
     });
 };
 
-function getZipBoundaries(map){
+function getZipBoundaries(map, layerControl){
     $.ajax("data/LA_ZIP.geojson", {
         dataType: "json",
         success: function(zipData) {
 
-            createChoropleth(zipData, map, attributes);
+            var layer = L.geoJson(zipData)
         }
     });
 };
+
+layerControl.addBaselayer(layer);
+layerControl.addBaselayer(layer);
 
 $(document).ready(createMap);
