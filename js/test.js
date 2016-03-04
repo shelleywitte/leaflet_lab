@@ -11,7 +11,11 @@ function createMap(){
     }).addTo(map);
 
     getData(map);
+
+    getZipBoundaries(map);
 };
+
+
 
 function calcPropRadius(attValue) {
     //scale factor to adjust symbol size evenly
@@ -26,8 +30,6 @@ function calcPropRadius(attValue) {
 
 function pointToLayer(feature, latlng, attributes) {
     var attribute = attributes[0];
-
-    console.log(attribute);
 
     var geojsonMarkerOptions = {
         radius: 8,
@@ -49,8 +51,19 @@ function pointToLayer(feature, latlng, attributes) {
     var fiscalYear = attribute.substr(3).replace("_", "/");
     popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + feature.properties[attribute] + " hundred cubic feet</p>";
 
-    layer.bindPopup(popupContent);
+    layer.bindPopup(popupContent, {
+        offset: new L.Point(0,-geojsonMarkerOptions.radius)
+    });
 
+    //event listeners to open popup on hover
+    layer.on({
+        mouseover: function(){
+            this.openPopup();
+        },
+        mouseout: function(){
+            this.closePopup();
+        }
+    });
     return layer;
 };
 
@@ -62,11 +75,32 @@ function createPropSymbols(response, map, attributes) {
     }).addTo(map);
 };
 
-function createSequenceControls(map) {
+function updatePropSymbols(map, attribute) {
+    map.eachLayer(function(layer) {
+        if (layer.feature && layer.feature.properties[attribute]) {
+            var props = layer.feature.properties;
+
+
+            var radius = calcPropRadius(props[attribute]);
+            layer.setRadius(radius);
+
+            var popupContent = "<p><b>Zip Code: </b> " + props.ZipCode + "</p>";
+
+            var fiscalYear = attribute.substr(3).replace("_", "/");
+            popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + props[attribute] + " hundred cubic feet</p>";
+
+            layer.bindPopup(popupContent, {
+                offset: new L.Point(0, -radius)
+            });
+        };
+    })
+}
+
+function createSequenceControls(map, attributes) {
     $('#panel').append('<input class = "range-slider" type="range">');
 
     $('.range-slider').attr({
-        max: 8,
+        max: 7,
         min: 0,
         value: 0,
         step:1
@@ -83,10 +117,10 @@ function createSequenceControls(map) {
 
         if ($(this).attr('id') == 'forward'){
             index++;
-            index = index > 8 ? 0 : index;
+            index = index > 7 ? 0 : index;
         } else if ($(this).attr('id') == 'reverse') {
             index--;
-            index = index < 0 ? 8 : index;
+            index = index < 0 ? 7 : index;
         };
 
         $('.range-slider').val(index);
@@ -124,6 +158,16 @@ function getData(map){
 
             createPropSymbols(response, map, attributes);
             createSequenceControls(map, attributes);
+        }
+    });
+};
+
+function getZipBoundaries(map){
+    $.ajax("data/LA_ZIP.geojson", {
+        dataType: "json",
+        success: function(zipData) {
+
+            L.geoJson(zipData).addTo(map);
         }
     });
 };
