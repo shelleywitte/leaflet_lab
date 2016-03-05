@@ -195,7 +195,7 @@ function getZipBoundaries(map){
         dataType: "json",
         success: function(zipData) {
 
-            L.geoJson(zipData).addTo(map);
+            createChoropleth(zipData);
 
         }
     });

@@ -1,72 +1,197 @@
 function createMap(){
-    //creates the map
+    //create the map
     var map = L.map('map', {
-        center: [34.02, -118.375],
-        zoom: 11 //zoom level when page loads - 10 made it look too crowded even though all the points were visible without scrolling, 12 was less crowded but too zoomed in, 11 seemed like a good compromise even though scrolling is necessary to see all of the points
+        center: [34.02, -118.43],
+        zoom: 10
     });
 
-    //tileset with attribution information
+    //tileset
     var Esri_WorldTopoMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
     	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     }).addTo(map);
 
-// call getData function which contains the data from the geojson
-    getData(map);
+    getData(map)
+
+    getZipBoundaries(map)
+
 };
 
-// function to scale the markers to make them proportional symbols
-// takes the attribute value from the chosen attribute (FY_11_12) as an argument
+
+// var layerControl = L.control.layers().addTo(map);
+
+// function calcPerCapita(fyAttr, popAttr){
+//
+//     var perCapita = fyAttr / popAttr;
+//
+//     return perCapita;
+// };
+
+function createChoropleth(zipData, map) {
+    var zipStyle = {
+        color: "#808080",
+        weight: "2"
+    };
+
+    var layer = L.geoJson(zipData,{
+        style: zipStyle
+    }).addTo(map);
+};
+
+
+
 function calcPropRadius(attValue) {
-    // scale factor which adjusts the symbol size evenly
+    //scale factor to adjust symbol size evenly
     var scaleFactor = 50;
-    // area is based on attribute value (for Fiscal Year 11/12) and above scale factor
+    //area based on attribute value and scale factor
     var area = attValue * scaleFactor;
-    // the radius is then calculated based on the above area
+    //radius calculated based on area
     var radius = Math.sqrt(area/Math.PI);
 
     return radius;
 };
-// function which creates the markers for the point data
-function createPropSymbols(response, map) {
-    // attribute chosen to visualize with proportional symbols
-    var attribute = "FY_11_12"
-    // styling the markers for the point data
+
+function pointToLayer(feature, latlng, attributes) {
+    var attribute = attributes[0];
+
     var geojsonMarkerOptions = {
         radius: 8,
-        fillColor: "#005ce6", //blue to represent water
-        color: "#ffffff", //white outline looks better than black!
+        fillColor: "#005ce6",
+        color: "#ffffff",
         weight: 1,
         opacity: 0.7,
-        // for the concentrated downtown area it seemed necessary to have lower opacity to see the label for "Los Angeles" to allow the user to confirm they had reached the map they were looking for plus it stylistcally seems to match the tileset
-        fillOpacity: 0.35
+        fillOpacity: 0.5
     };
 
-// creates Leaflet geojson layer for the map, creating
-    L.geoJson(response, {
-        // iterates through each feature in the geojson to access each set of attribute values
-        pointToLayer: function (feature, latlng) {
-            // for each feature, it grabs the value for the chosen attribute (FY_11_12)
-            // javascript Number() method converts a string to a number (not necessary for my data, though, since they are already numbers)
-            var attValue = Number(feature.properties[attribute]);
-            // FY_11_12 is located in the properties object
+    var attValue = Number(feature.properties[attribute]);
 
-            // pass the attribute value for each feature through the calcPropRadius fuction and gives each feature a circle marker with a radius that is based on the attribute that was passed through the function
-            geojsonMarkerOptions.radius = calcPropRadius(attValue);
+    geojsonMarkerOptions.radius = calcPropRadius(attValue);
 
-            // actually creates the circle markers
-            return L.circleMarker(latlng, geojsonMarkerOptions);
+    var layer = L.circleMarker(latlng, geojsonMarkerOptions);
+
+    var popupContent = "<p><b>Zip Code: </b> " + feature.properties.ZipCode + "</p>";
+
+    var fiscalYear = attribute.substr(3).replace("_", "/");
+    popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + feature.properties[attribute] + " hundred cubic feet</p>";
+
+    layer.bindPopup(popupContent, {
+        offset: new L.Point(0,-geojsonMarkerOptions.radius)
+    });
+
+    layer.on({
+        mouseover: function(){
+            this.openPopup();
+        },
+        mouseout: function(){
+            this.closePopup();
         }
-    }).addTo(map); //adds proportional symbols to the map
+    });
+    return layer;
 };
 
-// retrieves geojson data to put it on the map
+function createPropSymbols(response, map, attributes) {
+    L.geoJson(response, {
+        pointToLayer: function(feature, latlng) {
+            return pointToLayer(feature, latlng, attributes);
+        }
+    }).addTo(map);
+
+    // layerControl.addBaseLayer(layer, "Water Usage")
+    // getData(map, layerControl);
+};
+
+function updatePropSymbols(map, attribute) {
+    map.eachLayer(function(layer) {
+        if (layer.feature && layer.feature.properties[attribute]) {
+            var props = layer.feature.properties;
+
+
+            var radius = calcPropRadius(props[attribute]);
+            layer.setRadius(radius);
+
+            var popupContent = "<p><b>Zip Code: </b> " + props.ZipCode + "</p>";
+
+            var fiscalYear = attribute.substr(3).replace("_", "/");
+            popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + props[attribute] + " hundred cubic feet</p>";
+
+            layer.bindPopup(popupContent, {
+                offset: new L.Point(0, -radius)
+            });
+        };
+    })
+}
+
+function createSequenceControls(map, attributes) {
+    $('#panel').append('<input class = "range-slider" type="range">');
+
+    $('.range-slider').attr({
+        max: 7,
+        min: 0,
+        value: 0,
+        step:1
+    });
+
+    $('#panel').append('<button class="skip" id="reverse">Reverse</button>');
+    $('#panel').append('<button class="skip" id="forward">Skip</button>');
+
+    $('#reverse').html('<img src="img/arrow_left.png">');
+    $('#forward').html('<img src="img/arrow_right.png">');
+
+    $('.skip').click(function(){
+        var index = $('.range-slider').val();
+
+        if ($(this).attr('id') == 'forward'){
+            index++;
+            index = index > 7 ? 0 : index;
+        } else if ($(this).attr('id') == 'reverse') {
+            index--;
+            index = index < 0 ? 7 : index;
+        };
+
+        $('.range-slider').val(index);
+
+        updatePropSymbols(map, attributes[index]);
+    });
+
+    $('.range-slider').on('input', function(){
+        var index = $(this).val();
+
+        updatePropSymbols(map, attributes[index]);
+    });
+};
+
+function processData(data){
+    var attributes = [];
+
+    var properties = data.features[0].properties;
+
+    for (var attribute in properties) {
+        if (attribute.indexOf("FY") > -1) {
+            attributes.push(attribute);
+        };
+    };
+
+    return attributes;
+};
+
 function getData(map){
-    // loads the data
     $.ajax("data/LA_H2O.geojson", {
         dataType: "json",
         success: function(response) {
-            // passes data to an outside function to use outside of anonymous callback function
-            createPropSymbols(response, map);
+
+            var attributes = processData(response);
+
+            createPropSymbols(response, map, attributes);
+            createSequenceControls(map, attributes);
+        }
+    });
+};
+
+function getZipBoundaries(map){
+    $.ajax("data/LA_ZIP.geojson", {
+        dataType: "json",
+        success: function(zipData) {
+
+            createChoropleth(zipData, map);
         }
     });
 };

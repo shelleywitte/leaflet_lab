@@ -2,22 +2,22 @@
 
 #map {
     height: 800px;
-    width: 74%;
+    width: 90%;
     display: inline-block;
-    
+
 }
 
 #panel {
-    width: 26%;
-    padding: 20px;
+    width: 25%;
+    padding: 10px;
     display: inline-block;
     vertical-align: top;
     text-align: center;
-    line-height: 42px;
+    line-height: 20px;
 }
 
 .range-slider {
-    width: 50%;
+    width: 40%;
 }
 
 #forward {
