@@ -6,38 +6,12 @@ function createMap(){
     });
 
     //tileset
-    var Esri_WorldTopoMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+    var Eskri_WorldTopoMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
     	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     }).addTo(map);
 
-    getData(map)
-
-    getZipBoundaries(map)
-
+    getData(map);
 };
-
-
-// var layerControl = L.control.layers().addTo(map);
-
-// function calcPerCapita(fyAttr, popAttr){
-//
-//     var perCapita = fyAttr / popAttr;
-//
-//     return perCapita;
-// };
-
-function createChoropleth(zipData, map) {
-    var zipStyle = {
-        color: "#808080",
-        weight: "2"
-    };
-
-    var layer = L.geoJson(zipData,{
-        style: zipStyle
-    }).addTo(map);
-};
-
-
 
 function calcPropRadius(attValue) {
     //scale factor to adjust symbol size evenly
@@ -94,9 +68,6 @@ function createPropSymbols(response, map, attributes) {
             return pointToLayer(feature, latlng, attributes);
         }
     }).addTo(map);
-
-    // layerControl.addBaseLayer(layer, "Water Usage")
-    // getData(map, layerControl);
 };
 
 function updatePropSymbols(map, attribute) {
@@ -191,9 +162,11 @@ function getZipBoundaries(map){
         dataType: "json",
         success: function(zipData) {
 
-            createChoropleth(zipData, map);
+            L.geojson(zipData).addTo(map);
         }
     });
 };
+
+// function retreiving my 
 
 $(document).ready(createMap);
