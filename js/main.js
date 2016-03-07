@@ -11,6 +11,8 @@ function createMap(){
     }).addTo(map);
 
     getData(map);
+
+    getZipBoundaries(map);
 };
 
 function calcPropRadius(attValue) {
@@ -42,14 +44,7 @@ function pointToLayer(feature, latlng, attributes) {
 
     var layer = L.circleMarker(latlng, geojsonMarkerOptions);
 
-    var popupContent = "<p><b>Zip Code: </b> " + feature.properties.ZipCode + "</p>";
-
-    var fiscalYear = attribute.substr(3).replace("_", "/");
-    popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + feature.properties[attribute] + " hundred cubic feet</p>";
-
-    layer.bindPopup(popupContent, {
-        offset: new L.Point(0,-geojsonMarkerOptions.radius)
-    });
+    createPopup(feature.properties, attribute, layer, geojsonMarkerOptions.radius);
 
     layer.on({
         mouseover: function(){
@@ -62,6 +57,7 @@ function pointToLayer(feature, latlng, attributes) {
     return layer;
 };
 
+
 function createPropSymbols(response, map, attributes) {
     L.geoJson(response, {
         pointToLayer: function(feature, latlng) {
@@ -69,6 +65,7 @@ function createPropSymbols(response, map, attributes) {
         }
     }).addTo(map);
 };
+
 
 function updatePropSymbols(map, attribute) {
     map.eachLayer(function(layer) {
@@ -79,17 +76,22 @@ function updatePropSymbols(map, attribute) {
             var radius = calcPropRadius(props[attribute]);
             layer.setRadius(radius);
 
-            var popupContent = "<p><b>Zip Code: </b> " + props.ZipCode + "</p>";
+            createPopup(props, attribute, layer, radius);
 
-            var fiscalYear = attribute.substr(3).replace("_", "/");
-            popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + props[attribute] + " hundred cubic feet</p>";
-
-            layer.bindPopup(popupContent, {
-                offset: new L.Point(0, -radius)
-            });
         };
     })
 }
+
+function createPopup(properties, attribute, layer, radius){
+    var popupContent = "<p><b>Zip Code: </b> " + properties.ZipCode + "</p>";
+
+    var fiscalYear = attribute.substr(3).replace("_", "/");
+    popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
+
+    layer.bindPopup(popupContent, {
+        offset: new L.Point(0, -radius)
+    });
+};
 
 function createSequenceControls(map, attributes) {
     $('#panel').append('<input class = "range-slider" type="range">');
@@ -162,11 +164,10 @@ function getZipBoundaries(map){
         dataType: "json",
         success: function(zipData) {
 
-            L.geojson(zipData).addTo(map);
+            L.geoJson(zipData).addTo(map);
         }
     });
 };
 
-// function retreiving my 
 
 $(document).ready(createMap);
