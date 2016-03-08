@@ -12,7 +12,7 @@ function createMap(){
 
     getData(map);
 
-    getZipBoundaries(map);
+    // getZipBoundaries(map);
 };
 
 function calcPropRadius(attValue) {
@@ -44,7 +44,11 @@ function pointToLayer(feature, latlng, attributes) {
 
     var layer = L.circleMarker(latlng, geojsonMarkerOptions);
 
-    createPopup(feature.properties, attribute, layer, geojsonMarkerOptions.radius);
+    // var popup = newPopup(features.properties, attribute, layer, geojsonMarkerOptions.radius);
+
+    createPopup(props, attribute, layer, radius);
+
+    popup.bindToLayer();
 
     layer.on({
         mouseover: function(){
@@ -55,6 +59,8 @@ function pointToLayer(feature, latlng, attributes) {
         }
     });
     return layer;
+
+
 };
 
 
@@ -76,11 +82,28 @@ function updatePropSymbols(map, attribute) {
             var radius = calcPropRadius(props[attribute]);
             layer.setRadius(radius);
 
+            // var popup = new Popup(props, attribute, layer, radius);
+            //
+            // popup.bindToLayer();
             createPopup(props, attribute, layer, radius);
-
         };
     })
 }
+
+function Popup(properties, attribute, layer, radius){
+    this.properties = properties;
+    this.attribute = attribute;
+    this.layer = layer;
+    this.fiscalYear = attribute.substr(3).replace("_", "/")[1];
+    this.waterUsage = this.properties[attribute];
+    this.content = "<p><b>Average water usage in " + fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
+
+    this.bindToLayer = function(){
+        this.layer.bindPopup(this.content, {
+            offset: new L.point(0, -radius)
+        });
+    };
+};
 
 function createPopup(properties, attribute, layer, radius){
     var popupContent = "<p><b>Zip Code: </b> " + properties.ZipCode + "</p>";
