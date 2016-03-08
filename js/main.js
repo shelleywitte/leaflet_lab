@@ -1,7 +1,7 @@
 function createMap(){
     //create the map
     var map = L.map('map', {
-        center: [34.02, -118.43],
+        center: [33.96, -118.33],
         zoom: 10
     });
 
@@ -44,14 +44,9 @@ function pointToLayer(feature, latlng, attributes) {
 
     var layer = L.circleMarker(latlng, geojsonMarkerOptions);
 
-    var popupContent = "<p><b>Zip Code: </b> " + feature.properties.ZipCode + "</p>";
+    var popup = new Popup(feature.properties, attribute, layer, geojsonMarkerOptions.radius);
 
-    var fiscalYear = attribute.substr(3).replace("_", "/");
-    popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + feature.properties[attribute] + " hundred cubic feet</p>";
-
-    layer.bindPopup(popupContent, {
-        offset: new L.Point(0, -geojsonMarkerOptions.radius)
-    });
+    popup.bindToLayer();
 
     layer.on({
         mouseover: function(){
@@ -62,7 +57,6 @@ function pointToLayer(feature, latlng, attributes) {
         }
     });
     return layer;
-
 
 };
 
@@ -76,7 +70,6 @@ function createPropSymbols(response, map, attributes) {
     }).addTo(map);
 };
 
-
 function updatePropSymbols(map, attribute) {
     map.eachLayer(function(layer) {
         if (layer.feature && layer.feature.properties[attribute]) {
@@ -87,47 +80,65 @@ function updatePropSymbols(map, attribute) {
             var radius = calcPropRadius(props[attribute]);
             layer.setRadius(radius);
 
-            var popupContent = "<p><b>Zip Code: </b> " + properties.ZipCode + "</p>";
+            var popup = new Popup(props, attribute, layer, radius);
 
-            var fiscalYear = attribute.substr(3).replace("_", "/");
-            popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
-
-            layer.bindPopup(popupContent, {
-                offset: new L.Point(0, -radius)
-            });
+            popup.bindToLayer();
         };
     })
 }
 
-// function Popup(properties, attribute, layer, radius){
-//     this.properties = properties;
-//     this.attribute = attribute;
-//     this.layer = layer;
-//     this.fiscalYear = attribute.substr(3).replace("_", "/")[1];
-//     this.waterUsage = this.properties[attribute];
-//     this.content = "<p><b>Average water usage in " + fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
-//
-//     this.bindToLayer = function(){
-//         this.layer.bindPopup(this.content, {
-//             offset: new L.point(0, -radius)
-//         });
-//     };
-// };
+function Popup(properties, attribute, layer, radius){
+    this.properties = properties;
+    this.attribute = attribute;
+    this.layer = layer;
+    this.fiscalYear = attribute.substr(3).replace("_", "/");
+    this.waterUsage = this.properties[attribute];
+    this.content = "<p><b>Zip Code: </b> " + this.properties.ZipCode + "</p><p><b>Average water usage in " + this.fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
 
-// function createPopup(properties, attribute, layer, radius){
-//     var popupContent = "<p><b>Zip Code: </b> " + properties.ZipCode + "</p>";
-//
-//     var fiscalYear = attribute.substr(3).replace("_", "/");
-//     popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
-//
-//     layer.bindPopup(popupContent, {
-//         offset: new L.Point(0, -radius)
-//     });
-// };
+    this.bindToLayer = function(){
+        this.layer.bindPopup(this.content, {
+            offset: new L.point(0, -radius)
+        });
+    };
+};
+
+function createPopup(properties, attribute, layer, radius){
+    var popupContent = "<p><b>Zip Code: </b> " + properties.ZipCode + "</p>";
+
+    var fiscalYear = attribute.substr(3).replace("_", "/");
+    popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
+
+    layer.bindPopup(popupContent, {
+        offset: new L.Point(0, -radius)
+    });
+};
 
 function createSequenceControls(map, attributes) {
-    // create slider for temporal sequencing
-    $('#panel').append('<input class = "range-slider" type="range">');
+
+    var SequenceControl = L.Control.extend({
+        options: {
+            position: "bottomleft"
+        },
+
+        onAdd: function(map) {
+            var container = L.DomUtil.create('div', 'sequence-control-container');
+
+            // create slider for temporal sequencing
+            $(container).append('<input class = "range-slider" type="range">');
+
+            // adding skip buttons to slider bar to more forward and backward in time
+            $(container).append('<button class="skip" id="reverse">Reverse</button>');
+            $(container).append('<button class="skip" id="forward">Skip</button>');
+
+            $(container).on('mousedown dblclick', function (e) {
+                L.DomEvent.stopPropagation(e);
+            });
+
+            return container;
+        }
+    });
+
+    map.addControl(new SequenceControl());
 
     // slider attributes
     $('.range-slider').attr({
@@ -136,10 +147,6 @@ function createSequenceControls(map, attributes) {
         value: 0,
         step:1
     });
-
-    // adding skip buttons to slider bar to more forward and backward in time
-    $('#panel').append('<button class="skip" id="reverse">Reverse</button>');
-    $('#panel').append('<button class="skip" id="forward">Skip</button>');
 
     // arrow images for sequence buttons
     $('#reverse').html('<img src="img/arrow_left.png">');
@@ -173,6 +180,23 @@ function createSequenceControls(map, attributes) {
 
         updatePropSymbols(map, attributes[index]);
     });
+};
+
+function createLegend(map, attributes){
+    var LegendControl = L.Control.extend({
+        options: {
+            position: 'bottomright'
+        },
+        onAdd: function(map){
+            var container = L.DomUtil.create('div', 'legend-control-container');
+
+            $(container).append(features.properties.attribute)
+
+            return container;
+        }
+    });
+
+    map.addControl(new LegendControl());
 };
 
 function processData(data){

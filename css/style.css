@@ -4,6 +4,33 @@
     height: 800px;
     width: 80%;
     display: inline-block;
+    position: relative;
+
+}
+
+.sequence-control-container {
+    position: absolute;
+    bottom: 30px;
+    width: 250px;
+    height: 30px;
+    background-color: rgba(255,255,255,0.5);
+    padding: 8px;
+    line-height: 40px;
+    text-align: center;
+    border: solid gray 1px;
+    border-radius: 5px;
+}
+
+.legend-control-container {
+    position: absolute;
+    bottom: 30px;
+    width: 200px;
+    height: 250px;
+    background-color: rgba(255,255,255,0.5);
+    padding: 8px;
+    text-align: left;
+    border: solid gray 1px;
+    border-radius: 5px;
 
 }
 
@@ -17,15 +44,17 @@
 }
 
 .range-slider {
-    width: 40%;
+    width: 150px;
 }
 
 #forward {
     float: right;
+    padding: 2px;
 }
 
 #reverse {
     float: left;
+    padding: 2px;
 }
 
 .leaflet-popup-content p {
