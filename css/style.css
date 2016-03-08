@@ -2,13 +2,13 @@
 
 #map {
     height: 800px;
-    width: 90%;
+    width: 80%;
     display: inline-block;
 
 }
 
 #panel {
-    width: 25%;
+    width: 20%;
     padding: 10px;
     display: inline-block;
     vertical-align: top;
