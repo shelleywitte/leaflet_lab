@@ -1,5 +1,9 @@
 /* Stylesheet by Shelley Witte, 2016 */
 
+#title {
+    font: bold 2.5em georgia
+}
+
 #map {
     height: 800px;
     width: 80%;
@@ -13,26 +17,29 @@
     bottom: 30px;
     width: 250px;
     height: 30px;
-    background-color: rgba(255,255,255,0.5);
-    padding: 8px;
     line-height: 40px;
     text-align: center;
-    border: solid gray 1px;
-    border-radius: 5px;
 }
 
-.legend-control-container {
-    width: 250px;
-    background-color: rgba(255,255,255,0.9);
+.legend-control-container, .sequence-control-container {
     padding: 8px;
-    text-align: center;
+    background-color: rgba(255,255,255,0.9);
     border: solid gray 1px;
     border-radius: 5px;
 
+}
+.legend-control-container {
+    width: 240px;
+    text-align: center;
 }
 
 #fiscalyear-legend {
-    font-size: 1.5em;
+    font: italic bold 1.5em georgia;
+}
+
+#mean-text, #max-text, #min-text {
+    font: normal 1.1em arial;
+
 }
 
 /*#panel {
@@ -60,4 +67,10 @@
 
 .leaflet-popup-content p {
     margin: 0.2em 0;
+    text-align: center;
+    font: normal 1.2em arial;
+}
+
+.leaflet-popup {
+    width: 200px;
 }

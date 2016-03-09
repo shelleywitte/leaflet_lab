@@ -17,7 +17,7 @@ function createMap(){
 
 function calcPropRadius(attValue) {
     //scale factor to adjust symbol size evenly
-    var scaleFactor = 50;
+    var scaleFactor = 40;
     //area based on attribute value and scale factor
     var area = attValue * scaleFactor;
     //radius calculated based on area
@@ -26,16 +26,18 @@ function calcPropRadius(attValue) {
     return radius;
 };
 
-function createPopup(properties, attribute, layer, radius){
-    var popupContent = "<p><b>Zip Code: </b> " + properties.ZipCode + "</p>";
-
-    var fiscalYear = attribute.substr(3).replace("_", "/");
-    popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
-
-    layer.bindPopup(popupContent, {
-        offset: new L.Point(0, -radius)
-    });
-};
+// function createPopup(properties, attribute, layer, radius){
+//     var popupContent = "<p><b>Zip Code: </b> " + properties.ZipCode + "</p>";
+//
+//     var fiscalYear = attribute.substr(3).replace("_", "/");
+//     // popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
+//
+//     popupContent += properties[attribute] + " hundred cubic feet of water used in " + fiscalYear + ".";
+//
+//     layer.bindPopup(popupContent, {
+//         offset: new L.Point(0, -radius)
+//     });
+// };
 
 function Popup(properties, attribute, layer, radius){
     this.properties = properties;
@@ -43,7 +45,7 @@ function Popup(properties, attribute, layer, radius){
     this.layer = layer;
     this.fiscalYear = attribute.substr(3).replace("_", "/");
     this.waterUsage = this.properties[attribute];
-    this.content = "<p><b>Zip Code: </b> " + this.properties.ZipCode + "</p><p><b>Average water usage in " + this.fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
+    this.content = "<p><b>" + this.properties.ZipCode + "</p><p><b>" + properties[attribute] + " hundred cubic feet of water in " + this.fiscalYear + "</b></p>";
 
     this.bindToLayer = function(){
         this.layer.bindPopup(this.content, {
@@ -99,7 +101,7 @@ function createPropSymbols(response, map, attributes) {
 function updateLegend(map, attribute){
 
     var fiscalYear = attribute.substr(3).replace("_", "/");
-	var content = "Water usage in " + fiscalYear;
+	var content = "Average Residential Water Usage in " + fiscalYear;
 
 	$('#fiscalyear-legend').html(content);
 
@@ -114,7 +116,6 @@ function updateLegend(map, attribute){
             cy: 105 - radius,
             r: radius
         });
-        console.log('#'+key);
 
         $('#'+key+'-text').text(Math.round(circleValues[key]*100)/100 + " hundred cubic feet");
     };
