@@ -2,7 +2,9 @@ function createMap(){
     //create the map
     var map = L.map('map', {
         center: [33.96, -118.33],
-        zoom: 10
+        zoom: 10,
+        minZoom: 10,
+        maxZoom: 13,
     });
 
     //tileset
@@ -10,9 +12,11 @@ function createMap(){
     	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     }).addTo(map);
 
+
     getData(map);
 
     // getZipBoundaries(map);
+
 };
 
 function calcPropRadius(attValue) {
@@ -26,26 +30,13 @@ function calcPropRadius(attValue) {
     return radius;
 };
 
-// function createPopup(properties, attribute, layer, radius){
-//     var popupContent = "<p><b>Zip Code: </b> " + properties.ZipCode + "</p>";
-//
-//     var fiscalYear = attribute.substr(3).replace("_", "/");
-//     // popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
-//
-//     popupContent += properties[attribute] + " hundred cubic feet of water used in " + fiscalYear + ".";
-//
-//     layer.bindPopup(popupContent, {
-//         offset: new L.Point(0, -radius)
-//     });
-// };
-
 function Popup(properties, attribute, layer, radius){
     this.properties = properties;
     this.attribute = attribute;
     this.layer = layer;
     this.fiscalYear = attribute.substr(3).replace("_", "/");
     this.waterUsage = this.properties[attribute];
-    this.content = "<p><b>" + this.properties.ZipCode + "</p><p><b>" + properties[attribute] + " hundred cubic feet of water in " + this.fiscalYear + "</b></p>";
+    this.content = "<p><b>" + this.properties.ZipCode + "</p><p><b>" + properties[attribute] + " hundred cubic feet of water used in " + this.fiscalYear + "</b></p>";
 
     this.bindToLayer = function(){
         this.layer.bindPopup(this.content, {
@@ -249,9 +240,9 @@ function createLegend(map, attributes){
             var svg = '<svg id="attribute-legend" width="250px" height="105px">';
 
             var circles = {
-                max: 20,
-                mean: 40,
-                min: 60
+                max: 60,
+                mean: 80,
+                min: 100
             };
 
             for (var circle in circles) {
@@ -305,15 +296,24 @@ function getData(map){
     });
 };
 
-function getZipBoundaries(map){
-    $.ajax("data/LA_ZIP.geojson", {
-        dataType: "json",
-        success: function(zipData) {
-
-            L.geoJson(zipData).addTo(map);
-        }
-    });
-};
+// function getZipBoundaries(map){
+//     $.ajax("data/LA_ZIP.geojson", {
+//         dataType: "json",
+//         success: function(zipData) {
+//
+//             var zipStyle = {
+//                 "color": "#4d4d4d",
+//                 "fillColor": "#ffffff",
+//                 "fill-opacity": 0.0,
+//                 "weight": 2,
+//             }
+//
+//             L.geoJson(zipData, {
+//                 style: zipStyle
+//             }).addTo(map);
+//         }
+//     });
+// };
 
 
 $(document).ready(createMap);

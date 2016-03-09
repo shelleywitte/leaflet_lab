@@ -1,15 +1,67 @@
 /* Stylesheet by Shelley Witte, 2016 */
+body{
+    background-color: #fff2cc;
+}
+
+.header {
+    height: 120px;
+    width: 100%;
+    margin: 0px;
+    background: #005ce6;
+    box-shadow: 0px 0px 10px #4d4d4d;
+    padding: 0
+}
+
+.header2{
+    width: 100%;
+    position: fixed;
+    top: 0px;
+}
+
+#title, #subtitle {
+    text-align: center;
+    color: #ffffff;
+}
 
 #title {
-    font: bold 2.5em georgia
+    font: bold 1.2em georgia;
+    text-shadow: 2px 2px #4d4d4d;
+    line-height: 20px;
+}
+
+#subtitle {
+    font: italic normal 0.9em arial;
+}
+
+#container {
+    width: 800px;
+    float: left;
+    box-shadow: 0px 0px 10px #4d4d4d;
+    margin-top: 10px;
+    margin-left: 25px;
+    position: relative;
 }
 
 #map {
     height: 800px;
-    width: 80%;
-    display: inline-block;
-    position: relative;
+}
 
+h4 {
+    font: bold 1.3em georgia;
+}
+
+#text {
+    font: normal 0.9em arial;
+	box-shadow: 0px 0px 10px #4d4d4d;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-right:25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float:right;
+    width: 200px;
+    background-color: #e6f2d9;
+    border-radius: 5px;
 }
 
 .sequence-control-container {
@@ -26,10 +78,9 @@
     background-color: rgba(255,255,255,0.9);
     border: solid gray 1px;
     border-radius: 5px;
-
 }
 .legend-control-container {
-    width: 240px;
+    width: 250px;
     text-align: center;
 }
 
@@ -38,18 +89,8 @@
 }
 
 #mean-text, #max-text, #min-text {
-    font: normal 1.1em arial;
-
+    font: normal 1.0em arial;
 }
-
-/*#panel {
-    width: 20%;
-    padding: 10px;
-    display: inline-block;
-    vertical-align: top;
-    text-align: center;
-    line-height: 20px;
-}*/
 
 .range-slider {
     width: 150px;
@@ -68,7 +109,7 @@
 .leaflet-popup-content p {
     margin: 0.2em 0;
     text-align: center;
-    font: normal 1.2em arial;
+    font: normal 0.9em arial;
 }
 
 .leaflet-popup {
