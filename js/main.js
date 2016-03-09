@@ -26,6 +26,32 @@ function calcPropRadius(attValue) {
     return radius;
 };
 
+function createPopup(properties, attribute, layer, radius){
+    var popupContent = "<p><b>Zip Code: </b> " + properties.ZipCode + "</p>";
+
+    var fiscalYear = attribute.substr(3).replace("_", "/");
+    popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
+
+    layer.bindPopup(popupContent, {
+        offset: new L.Point(0, -radius)
+    });
+};
+
+function Popup(properties, attribute, layer, radius){
+    this.properties = properties;
+    this.attribute = attribute;
+    this.layer = layer;
+    this.fiscalYear = attribute.substr(3).replace("_", "/");
+    this.waterUsage = this.properties[attribute];
+    this.content = "<p><b>Zip Code: </b> " + this.properties.ZipCode + "</p><p><b>Average water usage in " + this.fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
+
+    this.bindToLayer = function(){
+        this.layer.bindPopup(this.content, {
+            offset: new L.point(0, -radius)
+        });
+    };
+};
+
 function pointToLayer(feature, latlng, attributes) {
     var attribute = attributes[0];
 
@@ -70,6 +96,30 @@ function createPropSymbols(response, map, attributes) {
     }).addTo(map);
 };
 
+function updateLegend(map, attribute){
+
+    var fiscalYear = attribute.substr(3).replace("_", "/");
+	var content = "Water usage in " + fiscalYear;
+
+	$('#fiscalyear-legend').html(content);
+
+    var circleValues = getCircleValues(map, attribute);
+
+
+    for (var key in circleValues) {
+        var radius = calcPropRadius(circleValues[key]);
+
+
+        $('#'+key).attr({
+            cy: 105 - radius,
+            r: radius
+        });
+        console.log('#'+key);
+
+        $('#'+key+'-text').text(Math.round(circleValues[key]*100)/100 + " hundred cubic feet");
+    };
+};
+
 function updatePropSymbols(map, attribute) {
     map.eachLayer(function(layer) {
         if (layer.feature && layer.feature.properties[attribute]) {
@@ -84,33 +134,9 @@ function updatePropSymbols(map, attribute) {
 
             popup.bindToLayer();
         };
-    })
-}
-
-function Popup(properties, attribute, layer, radius){
-    this.properties = properties;
-    this.attribute = attribute;
-    this.layer = layer;
-    this.fiscalYear = attribute.substr(3).replace("_", "/");
-    this.waterUsage = this.properties[attribute];
-    this.content = "<p><b>Zip Code: </b> " + this.properties.ZipCode + "</p><p><b>Average water usage in " + this.fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
-
-    this.bindToLayer = function(){
-        this.layer.bindPopup(this.content, {
-            offset: new L.point(0, -radius)
-        });
-    };
-};
-
-function createPopup(properties, attribute, layer, radius){
-    var popupContent = "<p><b>Zip Code: </b> " + properties.ZipCode + "</p>";
-
-    var fiscalYear = attribute.substr(3).replace("_", "/");
-    popupContent += "<p><b>Average water usage in " + fiscalYear + ":</b> " + properties[attribute] + " hundred cubic feet</p>";
-
-    layer.bindPopup(popupContent, {
-        offset: new L.Point(0, -radius)
     });
+
+    updateLegend(map, attribute);
 };
 
 function createSequenceControls(map, attributes) {
@@ -182,6 +208,33 @@ function createSequenceControls(map, attributes) {
     });
 };
 
+function getCircleValues(map, attribute) {
+    var min = Infinity,
+        max = -Infinity;
+
+    map.eachLayer(function(layer) {
+        if (layer.feature) {
+            var attributeValue = Number(layer.feature.properties[attribute]);
+
+            if (attributeValue < min){
+                min = attributeValue;
+            };
+
+            if (attributeValue > max) {
+                max = attributeValue;
+            };
+        };
+    });
+
+    var mean = (max + min) / 2;
+
+    return {
+        max: max,
+        mean: mean,
+        min: min
+    };
+};
+
 function createLegend(map, attributes){
     var LegendControl = L.Control.extend({
         options: {
@@ -190,13 +243,33 @@ function createLegend(map, attributes){
         onAdd: function(map){
             var container = L.DomUtil.create('div', 'legend-control-container');
 
-            $(container).append(features.properties.attribute)
+            $(container).append('<div id="fiscalyear-legend">')
+
+            var svg = '<svg id="attribute-legend" width="250px" height="105px">';
+
+            var circles = {
+                max: 20,
+                mean: 40,
+                min: 60
+            };
+
+            for (var circle in circles) {
+                svg += '<circle class="legend-circle" id="' + circle + '" fill="#005ce6" fill-opacity="0.5" stroke="#ffffff" cx="51"/>';
+
+                svg += '<text id="' + circle + '-text" x="110" y="' + circles[circle] + '"></text>';
+            };
+
+            svg += "</svg>";
+
+            $(container).append(svg);
 
             return container;
         }
     });
 
     map.addControl(new LegendControl());
+
+    updateLegend(map, attributes[0]);
 };
 
 function processData(data){
@@ -226,6 +299,7 @@ function getData(map){
 
             createPropSymbols(response, map, attributes);
             createSequenceControls(map, attributes);
+            createLegend(map, attributes);
         }
     });
 };

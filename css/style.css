@@ -22,26 +22,27 @@
 }
 
 .legend-control-container {
-    position: absolute;
-    bottom: 30px;
-    width: 200px;
-    height: 250px;
-    background-color: rgba(255,255,255,0.5);
+    width: 250px;
+    background-color: rgba(255,255,255,0.9);
     padding: 8px;
-    text-align: left;
+    text-align: center;
     border: solid gray 1px;
     border-radius: 5px;
 
 }
 
-#panel {
+#fiscalyear-legend {
+    font-size: 1.5em;
+}
+
+/*#panel {
     width: 20%;
     padding: 10px;
     display: inline-block;
     vertical-align: top;
     text-align: center;
     line-height: 20px;
-}
+}*/
 
 .range-slider {
     width: 150px;
